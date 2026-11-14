@@ -81,10 +81,12 @@ resource "aws_db_parameter_group" "this" {
   family      = "postgres${var.engine_version}"
   description = "Parametros do PostgreSQL ${var.environment}"
 
-  # Conexões somente com TLS.
+  # Conexões somente com TLS. Parâmetro estático: a AWS o registra como pending-reboot;
+  # declarar o mesmo apply_method evita um diff a cada apply.
   parameter {
-    name  = "rds.force_ssl"
-    value = "1"
+    name         = "rds.force_ssl"
+    value        = "1"
+    apply_method = "pending-reboot"
   }
 
   # Registra queries lentas (análise de performance da modelagem/índices).
