@@ -119,3 +119,16 @@ GitHub Environments `homologacao` e `producao` com os secrets `AWS_ACCESS_KEY_ID
 | `db_secret_arn`, `jwt_secret_arn` | oficina-lambda-auth (permissões e leitura dos segredos) |
 | `db_client_security_group_id` | oficina-lambda-auth (SG das funções na VPC) |
 | `db_address`, `db_port`, `db_name`, `db_security_group_id` | Diagnóstico e documentação |
+
+## Deploys ativos e links
+
+| Ambiente | API Gateway | Swagger | Autenticação por CPF |
+| --- | --- | --- | --- |
+| Homologação (`develop`) | https://0bagr12oql.execute-api.us-east-1.amazonaws.com | [/docs](https://0bagr12oql.execute-api.us-east-1.amazonaws.com/docs) | `POST https://0bagr12oql.execute-api.us-east-1.amazonaws.com/auth/cpf` |
+| Produção (`main`) | https://cvqm7rpmdg.execute-api.us-east-1.amazonaws.com | [/docs](https://cvqm7rpmdg.execute-api.us-east-1.amazonaws.com/docs) | `POST https://cvqm7rpmdg.execute-api.us-east-1.amazonaws.com/auth/cpf` |
+
+URLs da sessão de 16/11/2026. O ambiente roda no AWS Learner Lab e é destruído e recriado entre sessões (`scripts/bringup.sh` do [oficina-infra-k8s](https://github.com/Guribeiro/oficina-infra-k8s)), o que gera novas URLs.
+
+- Coleção Postman (autenticação por CPF, authorizer e APIs protegidas): [oficina-fase3.postman_collection.json](https://github.com/Guribeiro/tech-challenge/blob/main/docs/postman/oficina-fase3.postman_collection.json)
+- Documentação arquitetural (componentes, sequências, RFCs, ADRs, modelo de dados): [tech-challenge/docs](https://github.com/Guribeiro/tech-challenge/tree/main/docs)
+- Modelo de dados e justificativa do PostgreSQL/RDS: [modelo-dados.md](https://github.com/Guribeiro/tech-challenge/blob/main/docs/modelo-dados.md) e [RFC 0002](https://github.com/Guribeiro/tech-challenge/blob/main/docs/rfcs/0002-banco-postgresql-rds.md)
